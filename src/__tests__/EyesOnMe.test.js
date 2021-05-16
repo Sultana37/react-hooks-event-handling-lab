@@ -1,10 +1,25 @@
 import "@testing-library/jest-dom";
 import { render, screen, fireEvent } from "@testing-library/react";
 import EyesOnMe from "../components/EyesOnMe";
+import React from "react";
 
 beforeEach(() => {
   render(<EyesOnMe />);
 });
+function EyesOnMe() {
+  function handleFocus() {
+    console.log("Good!");
+  }
+  function handleBlur() {
+    console.log("Hey! Eyes on me!");
+  }
+  return (
+    <button onFocus={handleFocus} onBlur={handleBlur}>
+    Eyes on me
+  </button>
+);
+}
+export default EyesOnMe;
 
 test('displays a button with the text "Eyes on me"', () => {
   expect(screen.queryByText(/Eyes on me/)).toBeInTheDocument();
